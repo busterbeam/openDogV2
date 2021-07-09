@@ -97,7 +97,7 @@ def loop(opt, net, video_source, video_output):
 	
 	# exit on input/output EOS
 	if not video_source.IsStreaming() or not video_output.IsStreaming():
-		break
+		return True # exit on True
 
 if __name__ == "__main__":
 	# parse the command line
@@ -125,4 +125,5 @@ if __name__ == "__main__":
 		exit(0)
 	net, video_source, video_output = init(opt)
 	while True:
-		loop(opt, net, video_source, video_output)
+		if loop(opt, net, video_source, video_output):
+			break
